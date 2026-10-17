@@ -1,41 +1,31 @@
 const express = require('express');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Para que Render vea que está vivo
 app.get('/', (req, res) => {
   res.send('Geo-Bot Transporte V2 - LIVE');
 });
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en puerto ${PORT}`);
+  iniciarBot();
 });
 
-// Tu lógica del bot aquí
 async function iniciarBot() {
   console.log('Iniciando bot...');
   try {
     const browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--single-process'
-      ]
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
-    const page = await browser.newPage();
-    console.log('Browser iniciado correctamente - Chrome instalado');
-    
-    // AQUÍ PEGA TU CÓDIGO DE LA VERSIÓN 1
-    // Ejemplo: await page.goto('https://tu-pagina.com');
-    
-    // await browser.close();
-  } catch (error) {
-    console.error('Error en el bot:', error);
+    console.log('Bot iniciado correctamente - Browser OK');
+    // Aquí va tu lógica de Zeek
+  } catch (e) {
+    console.error('Error bot:', e);
   }
 }
-
-iniciarBot();
