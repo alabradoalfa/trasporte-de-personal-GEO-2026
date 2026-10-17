@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chofer 1er Turno</title>
-<style>body{background:#0a5c36;color:white;font-family:Arial;padding:15px;text-align:center} .parada{background:white;color:#000;padding:12px;margin:8px 0;border-radius:10px;text-align:left;font-weight:bold} button{background:#25D366;color:white;border:none;padding:20px;width:100%;font-size:22px;border-radius:15px;font-weight:bold;margin-top:20px}</style>
+<title>Chofer LAGA</title>
+<style>body{background:#0a5c36;color:white;font-family:Arial;padding:15px;text-align:center} .p{background:white;color:#000;padding:12px;margin:8px 0;border-radius:10px;text-align:left;font-weight:bold} button{background:#25D366;color:white;border:none;padding:20px;width:100%;font-size:24px;border-radius:15px;font-weight:bold}</style>
 </head>
 <body>
 <h2>🚌 1ER TURNO - LAGA</h2>
-<div id="lista">Cargando ruta optimizada 2 calles arriba...</div>
-<button onclick="abrir()">INICIAR RUTA - Abrir en Waze</button>
-<script>
-let R=[];
-fetch('/api/ruta').then(r=>r.json()).then(d=>{R=d; document.getElementById('lista').innerHTML=d.map((p,i)=>`<div class=parada>${i+1}. ${p.nombre}</div>`).join('')});
-function abrir(){ if(R.length>0) window.open(`https://waze.com/ul?ll=${R[0].lat},${R[0].lng}&navigate=yes`,'_blank'); }
-</script>
+<div class="p">1. Av. Fernando Baeza - Oxxo</div>
+<div class="p">2. Laderas - Glorieta</div>
+<div class="p">3. Cumbres - Sec 100</div>
+<div class="p">4. Monte Alban - Oxxo</div>
+<div class="p">5. Planta Reckitt</div>
+<button onclick="window.open('https://waze.com/ul?q=Reckitt%20Delicias&navigate=yes','_blank')">INICIAR RUTA - Abrir en Waze</button>
+<p style="margin-top:20px;font-size:12px;opacity:0.8">Optimizado 2 calles arriba</p>
 </body>
 </html>
