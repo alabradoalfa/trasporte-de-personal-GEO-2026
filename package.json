@@ -1,6 +1,6 @@
 {
-  "name": "geo-bot-trasporte-1",
-  "version": "2.0.0",
+  "name": "geobot-trasporte-1",
+  "version": "2.1.0",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-   "puppeteer": "^19.11.1",
+    "puppeteer": "^19.11.1",
     "dotenv": "^16.4.5"
   }
 }
