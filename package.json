@@ -1,14 +1,1 @@
-{
-  "name": "geobot-trasporte-1",
-  "version": "2.1.0",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.19.2",
-    "puppeteer": "^19.11.1",
-    "dotenv": "^16.4.5"
-  }
-}
+{"name":"geobot-trasporte-1","version":"2.1.0","main":"index.js","scripts":{"start":"node index.js"},"dependencies":{"express":"^4.19.2","puppeteer-core":"^21.11.0","@sparticuz/chromium":"^122.0.0"}}
