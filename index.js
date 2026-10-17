@@ -10,22 +10,24 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto ${PORT}`);
+  console.log(`Servidor en puerto ${PORT}`);
   iniciarBot();
 });
 
-async function iniciarBot() {
+async function iniciarBot(){
   console.log('Iniciando bot...');
-  try {
+  try{
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
+      ignoreHTTPSErrors: true
     });
     console.log('Bot iniciado correctamente - Browser OK');
+    const page = await browser.newPage();
     // Aquí va tu lógica de Zeek
-  } catch (e) {
+  }catch(e){
     console.error('Error bot:', e);
   }
 }
