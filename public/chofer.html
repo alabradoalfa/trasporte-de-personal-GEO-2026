@@ -2,17 +2,84 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chofer LAGA</title>
-<style>body{background:#0a5c36;color:white;font-family:Arial;padding:15px;text-align:center} .p{background:white;color:#000;padding:12px;margin:8px 0;border-radius:10px;text-align:left;font-weight:bold} button{background:#25D366;color:white;border:none;padding:20px;width:100%;font-size:24px;border-radius:15px;font-weight:bold}</style>
+<title>Rutas LAGA</title>
+<style>
+body{background:#0a5c36;color:white;font-family:Arial;padding:10px;margin:0}
+h2{text-align:center;margin:8px}
+.tabs{display:flex;gap:5px;margin:10px 0}
+.tab{flex:1;padding:12px;background:#fff3;color:#fff;border:none;border-radius:10px;font-weight:bold}
+.tab.active{background:white;color:#0a5c36}
+.p{background:white;color:#111;padding:10px;margin:7px 0;border-radius:12px;display:flex;justify-content:space-between;align-items:center}
+.p b{font-size:13px} .p small{font-size:11px;color:#555;display:block}
+.btns{display:flex;gap:5px}
+.btn{padding:8px 10px;border:none;border-radius:8px;font-weight:bold;color:white;font-size:12px}
+.g{background:#25D366} .w{background:#33CCFF}
+#ruta{display:none}
+</style>
 </head>
 <body>
-<h2>🚌 1ER TURNO - LAGA</h2>
-<div class="p">1. Av. Fernando Baeza - Oxxo</div>
-<div class="p">2. Laderas - Glorieta</div>
-<div class="p">3. Cumbres - Sec 100</div>
-<div class="p">4. Monte Alban - Oxxo</div>
-<div class="p">5. Planta Reckitt</div>
-<button onclick="window.open('https://waze.com/ul?q=Reckitt%20Delicias&navigate=yes','_blank')">INICIAR RUTA - Abrir en Waze</button>
-<p style="margin-top:20px;font-size:12px;opacity:0.8">Optimizado 2 calles arriba</p>
+<h2>🚌 RUTAS RECKITT - LAGA</h2>
+<div class="tabs">
+<button class="tab active" onclick="show('1er',this)">1er Turno (15)</button>
+<button class="tab" onclick="show('2do',this)">2do Turno (8)</button>
+<button class="tab" onclick="show('3er',this)">3er Turno (9)</button>
+</div>
+<div id="lista"></div>
+<script>
+const rutas={
+"1er":[
+["JOCELINE HUERTA","EL REFUGIO"],
+["ALEJANDRA CORRAL","AV 6 (Martin Lopez)"],
+["ARCELIA ACOSTA","AV 8 (C.27)"],
+["VIVIANA FLORES","AV 16 (C.41)"],
+["JOCELINNE TREJO","AV DE LAS TORRES (EXPENDIO LOS PRIMOS)"],
+["ARCELIA ACOSTA","SAN CARLOS (ABARROTES RONQUILLO)"],
+["BRENDA RODRIGUEZ","SAN CARLOS (ABARROTES RONQUILLO)"],
+["MARIAN SANCHEZ","AV DE LAS TORRES Y RIO SAN PEDRO"],
+["BRENDA RUBIO","CUMBRES DEL DEPORTE (SIX)"],
+["MELISSA FLORES","CUMBRES DEL DEPORTE (POZO)"],
+["ROSA CORRAL","FRACC. LOS VIÑEDOS"],
+["MAURA SERRANO","LAS TORRES (SEC-100)"],
+["DIANA DOMINGUEZ","CIPRESES (GLORIETA)"],
+["GRACIELA SANTOS","CIPRESES (GLORIETA)"],
+["LLUVIA NUÑEZ","MONTE ALBAN (OXXO)"]
+],
+"2do":[
+["KARLA REYES","NUEVO DELICIAS (EXPENDIO AV 8)"],
+["DIANA MARQUEZ","SAN CARLOS (ABARROTES RONQUILLO)"],
+["KATIA GARIBAY","AV DE LAS MORAS (PLAZA)"],
+["GRACIELA SOTO","COLINAS DEL VALLE (ABARROTES DOMINGUEZ)"],
+["PAMELA JIMENEZ","EL PEDREGA (AV 4)"],
+["ALBA FLORES","LOTES URBANOS"],
+["JORGE CABALLERO","LA LABOR (POLLOS BACHOCO)"],
+["SALVADOR JIMENEZ","PASEOS DEL ALGODÓN"]
+],
+"3er":[
+["LIZETH MOMACA","JARDINES DE FATIMA (PANTEON)"],
+["DINORA QUIRINO","AV DE LAS TORRES (RICOS BURROS)"],
+["MIRNA ALCARAZ","CUMBRES DEL DEPORTE (AV DE LAS MORAS)"],
+["JOSE RODRIGUEZ","GOMEZ MORIN (AV 4)(GO EXPRESS)"],
+["JULIO GONZALEZ","PONIENTE (PARQUE GLENDEL)"],
+["JENNIFER ORTIZ","AV DEL PARQUE (C.15 NTE)"],
+["ANGELA MOORE","AV SOLIDARIDAD (CALLE ORO)(MONTE ALBAN)"],
+["CIELO MONTES","VALLE DE MONTE ALBAN (FIN DEL CANAL)"],
+["MARISSA CRUZ","LADERAS DEL NORTE"]
+]
+};
+function show(turno,el){
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+el.classList.add('active');
+const cont=document.getElementById('lista');
+cont.innerHTML='';
+rutas[turno].forEach((r,i)=>{
+let q=encodeURIComponent(r[1]+' Delicias Chihuahua');
+let div=document.createElement('div');
+div.className='p';
+div.innerHTML=`<div><b>${i+1}. ${r[0]}</b><small>${r[1]}</small></div><div class=btns><button class="btn g" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${q}','_blank')">IR</button><button class="btn w" onclick="window.open('https://waze.com/ul?q=${q}&navigate=yes','_blank')">Waze</button></div>`;
+cont.appendChild(div);
+});
+}
+show('1er',document.querySelector('.tab'));
+</script>
 </body>
 </html>
